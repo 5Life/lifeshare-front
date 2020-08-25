@@ -1,21 +1,46 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from "react";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Life Share</Text>
+        <View>
+          <Text>Login</Text>
+          <TextInput style={styles.input} />
+          <Text style={{ marginTop: 20 }}>Senha</Text>
+          <TextInput style={styles.input} />
+        </View>
+        <View>
+          <Button title="ENTRAR" color="#E84C0E" />
+          <Text style={styles.signUp}>Cadastre-se</Text>
+        </View>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 30,
+    backgroundColor: "#fff",
+    justifyContent: "space-around",
+  },
+  title: {
+    fontSize: 30,
+    textAlign: "center",
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#E84C0E",
+    height: 30,
+    marginTop: 8,
+  },
+  signUp: {
+    textDecorationLine: "underline",
+    textAlign: "center",
+    marginTop: 8,
   },
 });

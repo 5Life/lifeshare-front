@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, StyleSheet, Text, TextInput, View, Modal } from 'react-native'
 import axios from 'axios'
-import { NavigationContainer } from '@react-navigation/native'
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('')
@@ -15,22 +14,28 @@ export default function Login({ navigation }) {
       })
       .catch(function (error) {
         console.log(error)
+        navigation.navigate('Modal')
       })
   }
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Life Share</Text>
-      <View>
-        <Text>Login</Text>
-        <TextInput style={styles.input} onChangeText={setEmail} />
-        <Text style={{ marginTop: 20 }}>Senha</Text>
-        <TextInput style={styles.input} onChangeText={setPass} />
+      <View style={styles.container}>
+        <Text style={styles.title}>Life Share</Text>
+        <View>
+          <Text>Login</Text>
+          <TextInput style={styles.input} onChangeText={setEmail} />
+          <Text style={{ marginTop: 20 }}>Senha</Text>
+          <TextInput style={styles.input} onChangeText={setPass} />
+        </View>
+        <View>
+          <Button title='ENTRAR' color='#E84C0E' onPress={login} />
+          <Text
+            style={styles.signUp}
+            onPress={() => navigation.navigate('Dados Pessoais')}
+          >
+            Cadastre-se
+          </Text>
+        </View>
       </View>
-      <View>
-        <Button title='ENTRAR' color='#E84C0E' onPress={login} />
-        <Text style={styles.signUp} onPress={() => navigation.navigate('Dados Pessoais')}>Cadastre-se</Text>
-      </View>
-    </View>
   )
 }
 

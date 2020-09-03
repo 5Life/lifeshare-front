@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, StyleSheet, Text, TextInput, View, Modal } from 'react-native'
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
 import axios from 'axios'
 
 export default function Login({ navigation }) {

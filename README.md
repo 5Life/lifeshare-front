@@ -3,7 +3,7 @@
 <div align="center">
 Lifeshare Mobile App com React Native
 
-![Badge](https://img.shields.io/badge/framework-React%20%20native-%2306a0c8) ![Badge](https://img.shields.io/badge/package%20manager-Yarn-%233394bf) ![Badge](https://img.shields.io/badge/plataforma-Expo-%23506feb)
+![Badge](https://img.shields.io/badge/framework-React%20%20native-%2306a0c8) ![Badge](https://img.shields.io/badge/package%20manager-Yarn-%233394bf) ![Badge](https://img.shields.io/badge/plataform-Expo-%23506feb)
 </div>
 
 <p align="center">
@@ -15,9 +15,13 @@ Lifeshare Mobile App com React Native
  <a href="#rocket-autor">Autor</a> • 
 </p>
 
-<h4 align="center"> 
-	🚧  Lifeshare 🚀 Em construção...  🚧
-</h4>
+<p align="center"> 
+	🚧  Lifeshare 🚀 Em construção...    🚧    
+</p>
+  
+<p align="center">  
+  <img src="assets/tela.png">  
+</p>
 
 ## :rocket: Objetivo
 Desenvolver um app onde as pessoas podem fazer uma gamificação e conseguir prêmios por doações de órgãos ou sangue, fazendo com que seja criado uma cultura onde doar seja comum.

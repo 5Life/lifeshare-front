@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, View, StyleSheet, Image } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export default function Profile({ navigation }) {
   return(
@@ -28,9 +29,11 @@ export default function Profile({ navigation }) {
         <Image source={require('../../assets/semDoacoes.png')}
             style={{minHeight:80, minWidth:80, marginTop:10}}/>
         <View style={styles.button}>
-          <Image 
-            style={{width:45, height:45}} 
-            source={require('../../assets/buttonAdd.png')}/>
+          <TouchableOpacity>
+            <Image 
+              style={{width:45, height:45}} 
+              source={require('../../assets/buttonAdd.png')}/>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

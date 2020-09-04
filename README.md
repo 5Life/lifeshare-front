@@ -1,4 +1,4 @@
-# lifeshare-front
+<h1 align="center">Lifeshare-front</h1>
 
 <div align="center">
 Lifeshare Mobile App com React Native

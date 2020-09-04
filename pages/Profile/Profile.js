@@ -43,7 +43,8 @@ export default function Profile({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    width:"100%"
+    width:"100%",
+    backgroundColor: "#FFF"
   },
   main: {
     display: "flex",

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
 import axios from 'axios'
 
-export default function Register() {
+export default function Register({ navigation }) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [bloodType, setBloodType] = useState('')
@@ -10,7 +10,7 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState('')
 
   function register() {
-    console.log(name)
+    navigation.navigate('Meu Perfil')
     axios.post('', {name, email, bloodType, password, confirmPassword})
     .then(function() {
       console.log('Success')

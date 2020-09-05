@@ -1,10 +1,11 @@
-import 'react-native-gesture-handler'
+import { StyleSheet } from 'react-native'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Modal from './pages/Modal'
+import Profile from './pages/Profile'
 
 const Stack = createStackNavigator(); 
 const Root = createStackNavigator();
@@ -14,6 +15,11 @@ function MainStack() {
     <Stack.Navigator>
         <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name="Dados Pessoais" component={Register}/>
+        <Stack.Screen options={{
+          headerStyle:styles.perfil,
+          headerTitleStyle: {color: 'white'},      
+        }} 
+        name="Meu Perfil" component={Profile}/>
       </Stack.Navigator>
   )
 }
@@ -28,3 +34,9 @@ export default function App() {
     </NavigationContainer>
   )
 }
+
+const styles = StyleSheet.create({
+  perfil: {
+    backgroundColor:'#E84C0E'
+  }
+})

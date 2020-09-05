@@ -31,7 +31,6 @@ Desenvolver um app onde as pessoas podem fazer uma gamificação e conseguir pr�
 - [x] Login de usuário
 - [x] Cadastro de usuário
 - [ ] Perfil de usuário
-- [ ] Perfil de usuário
 - [ ] Posts de usuários
 
 ## :rocket: Pré-requisitos

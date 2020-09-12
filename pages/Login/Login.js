@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, StyleSheet, Text, TextInput, View, TouchableOpacity, ActivityIndicator } from 'react-native'
 import axios from 'axios'
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('')
   const [password, setPass] = useState('')
+  const [loading, setLoading] = useState(false);
 
   function login() {
+    setLoading(true)
     axios
       .post('localhost:8080/api/auth', { email, password })
       .then(function () {
@@ -16,6 +18,7 @@ export default function Login({ navigation }) {
         console.log(error)
         navigation.navigate('Modal')
       })
+      setLoading(false)
   }
   return (
       <View style={styles.container}>
@@ -27,7 +30,18 @@ export default function Login({ navigation }) {
           <TextInput style={styles.input} onChangeText={setPass} />
         </View>
         <View>
-          <Button title='ENTRAR' color='#E84C0E' onPress={login} />
+          <TouchableOpacity
+            onPress={login}>
+            <View style={styles.button}>
+
+            {loading
+                ? <ActivityIndicator size="small" color="white" animating={loading}/>
+                : <Text style={{alignSelf: 'center'}}>ENTRAR</Text>
+              }
+
+            </View>
+          </TouchableOpacity>
+          {/* TODO: Fazer a cor do texto do botão ficar branco */}
           <Text
             style={styles.signUp}
             onPress={() => navigation.navigate('Dados Pessoais')}
@@ -60,5 +74,13 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     textAlign: 'center',
     marginTop: 8,
+  },
+  button:{
+    justifyContent: 'center',
+    backgroundColor: '#E84C0E',
+    color: 'white',
+    height: 30,
+    paddingHorizontal:150,
+    alignSelf: 'center'
   }
 })

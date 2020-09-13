@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, StyleSheet, Text, TextInput, View, TouchableOpacity, ActivityIndicator } from 'react-native'
 import axios from 'axios'
 
 export default function Register({ navigation }) {
@@ -8,9 +8,11 @@ export default function Register({ navigation }) {
   const [bloodType, setBloodType] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [loading, setLoading] = useState(false);
 
   function register() {
     navigation.navigate('Meu Perfil')
+    setLoading(true)
     axios.post('', {name, email, bloodType, password, confirmPassword})
     .then(function() {
       console.log('Success')
@@ -20,6 +22,7 @@ export default function Register({ navigation }) {
       console.log(error)
 
     })
+    setLoading(false)
   }
 
   return (
@@ -38,7 +41,18 @@ export default function Register({ navigation }) {
         <TextInput style={styles.input} onChangeText={setConfirmPassword}/>
       </View>
       <View>
-        <Button title='CADASTRAR' color='#E84C0E' onPress={register} />
+        <TouchableOpacity
+          onPress={register}>
+          <View style={styles.button}>
+
+          {loading
+              ? <ActivityIndicator size="small" color="white" animating={loading}/>
+              : <Text style={{alignSelf: 'center'}}>CADASTRAR</Text>
+            }
+
+          </View>
+        </TouchableOpacity>
+        {/* TODO: Fazer a cor do texto do botão ficar branco */}
       </View>
     </View>
   )
@@ -63,5 +77,13 @@ const styles = StyleSheet.create({
     borderColor: '#E84C0E',
     height: 30,
     marginTop: 8,
+  },
+  button:{
+    justifyContent: 'center',
+    backgroundColor: '#E84C0E',
+    color: 'white',
+    height: 30,
+    paddingHorizontal:137,
+    alignSelf: 'center'
   }
 })

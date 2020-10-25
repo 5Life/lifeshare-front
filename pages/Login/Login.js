@@ -1,32 +1,24 @@
 import React, { useState } from 'react';
-import { http } from '../../utils';
 import { Button, Text, TextInput, View } from 'react-native';
 import styles from './Login.styles';
+import loginApi from './api/login';
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('');
 
-  const login = () => {
-    http
-      .post('/auth', {
-        email,
-        password,
-      })
-      .then(() => {
-        console.log('Success');
-      })
-      .catch((error) => {
-        console.log(error);
-        navigation.navigate('Modal');
-      });
-  };
-
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!email.length || !password.length) {
       return;
     }
-    login();
+
+    try {
+      const data = await loginApi.authenticateUser({ email, password });
+      // Salvar token, etc
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

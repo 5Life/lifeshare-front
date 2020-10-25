@@ -1,64 +1,55 @@
-import React, { useState } from 'react'
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
-import axios from 'axios'
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Button, Text, TextInput, View } from 'react-native';
+import styles from './Login.styles';
 
-export default function Login({ navigation }) {
-  const [email, setEmail] = useState('')
-  const [password, setPass] = useState('')
+const Login = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPass] = useState('');
 
-  function login() {
+  const login = () => {
     axios
       .post('localhost:8080/api/auth', { email, password })
-      .then(function () {
-        console.log('Success')
+      .then(() => {
+        console.log('Success');
       })
-      .catch(function (error) {
-        console.log(error)
-        navigation.navigate('Modal')
-      })
-  }
-  return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Life Share</Text>
-        <View>
-          <Text>Login</Text>
-          <TextInput style={styles.input} onChangeText={setEmail} />
-          <Text style={{ marginTop: 20 }}>Senha</Text>
-          <TextInput style={styles.input} onChangeText={setPass} />
-        </View>
-        <View>
-          <Button title='ENTRAR' color='#E84C0E' onPress={login} />
-          <Text
-            style={styles.signUp}
-            onPress={() => navigation.navigate('Dados Pessoais')}
-          >
-            Cadastre-se
-          </Text>
-        </View>
-      </View>
-  )
-}
+      .catch((error) => {
+        console.log(error);
+        navigation.navigate('Modal');
+      });
+  };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 30,
-    backgroundColor: '#fff',
-    justifyContent: 'space-around',
-  },
-  title: {
-    fontSize: 30,
-    textAlign: 'center',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#E84C0E',
-    height: 30,
-    marginTop: 8,
-  },
-  signUp: {
-    textDecorationLine: 'underline',
-    textAlign: 'center',
-    marginTop: 8,
-  }
-})
+  const handleLogin = () => {
+    if (!email.length || !password.length) {
+      return;
+    }
+    login();
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Life Share</Text>
+      <View>
+        <Text>Login</Text>
+        <TextInput style={styles.input} onChangeText={setEmail} />
+        <Text style={{ marginTop: 20 }}>Senha</Text>
+        <TextInput
+          secureTextEntry
+          style={styles.input}
+          onChangeText={setPass}
+        />
+      </View>
+      <View>
+        <Button title="ENTRAR" color="#E84C0E" onPress={handleLogin} />
+        <Text
+          style={styles.signUp}
+          onPress={() => navigation.navigate('Dados Pessoais')}
+        >
+          Cadastre-se
+        </Text>
+      </View>
+    </View>
+  );
+};
+
+export default Login;

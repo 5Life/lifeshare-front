@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Button, Text, TextInput, View } from 'react-native';
 import styles from './Register.styles';
+import userApi from './api/user';
 
 const Register = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -10,17 +10,24 @@ const Register = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const register = () => {
-    navigation.navigate('Meu Perfil');
-    axios
-      .post('', { name, email, bloodType, password, confirmPassword })
-      .then(function () {
-        console.log('Success');
-        navigation.navigate('Meu Perfil');
-      })
-      .catch(function (error) {
-        console.log(error);
+  const handleRegister = async () => {
+    try {
+      const data = await userApi.registerUser({
+        name,
+        email,
+        bloodType,
+        password,
+        confirmPassword,
       });
+      navigation.navigate('Meu Perfil');
+      // Do something with data
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+
+      // TODO: remove this after server is up and running
+      navigation.navigate('Meu Perfil');
+    }
   };
 
   return (
@@ -39,7 +46,7 @@ const Register = ({ navigation }) => {
         <TextInput style={styles.input} onChangeText={setConfirmPassword} />
       </View>
       <View>
-        <Button title="CADASTRAR" color="#E84C0E" onPress={register} />
+        <Button title="CADASTRAR" color="#E84C0E" onPress={handleRegister} />
       </View>
     </View>
   );

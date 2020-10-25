@@ -52,7 +52,7 @@ export default StyleSheet.create({
   noDonationsIcon: {
     minHeight: 80,
     minWidth: 80,
-    marginTop: 10,
+    marginTop: 15,
   },
   buttonAdd: {
     width: 45,

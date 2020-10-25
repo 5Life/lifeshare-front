@@ -6,7 +6,7 @@ export default StyleSheet.create({
     width: '100%',
     backgroundColor: '#FFF',
   },
-  main: {
+  flexCenter: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -14,26 +14,48 @@ export default StyleSheet.create({
   profile: {
     backgroundColor: '#E84C0E',
   },
-  data: {
-    fontSize: 25,
+  basicDataText: {
+    fontSize: 22,
     color: 'white',
   },
   empty: {
-    fontSize: 18,
+    fontSize: 16,
+    width: '70%',
+    textAlign: 'center',
   },
-  row: {
+  userInfo: {
     flexDirection: 'row',
   },
-  basicData: {
+  donationOptions: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
     marginTop: 20,
+    marginBottom: 15,
   },
   button: {
     position: 'absolute',
     bottom: 20,
     right: 10,
+  },
+  defaultProfilePic: {
+    minHeight: 150,
+    minWidth: 150,
+    margin: 10,
+  },
+  editIcon: {
+    width: 30,
+    height: 30,
+    marginLeft: 10,
+  },
+  noDonationsIcon: {
+    minHeight: 80,
+    minWidth: 80,
+    marginTop: 10,
+  },
+  buttonAdd: {
+    width: 45,
+    height: 45,
   },
 });

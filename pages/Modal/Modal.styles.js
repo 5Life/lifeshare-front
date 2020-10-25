@@ -5,10 +5,17 @@ export default StyleSheet.create({
     flex: 1,
     padding: 30,
     backgroundColor: 'transparent',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  info: {
+    display: 'flex',
     justifyContent: 'space-around',
   },
   text: {
-    fontSize: 30,
+    fontSize: 25,
     color: '#E84C0E',
+    textAlign: 'center',
+    marginBottom: 20,
   },
 });

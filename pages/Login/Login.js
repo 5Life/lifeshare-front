@@ -18,6 +18,7 @@ const Login = ({ navigation }) => {
       console.log(data);
     } catch (error) {
       console.log(error);
+      navigation.navigate('Modal');
     }
   };
 

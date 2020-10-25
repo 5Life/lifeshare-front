@@ -24,13 +24,13 @@ Lifeshare Mobile App com React Native
 </p>
 
 ## :rocket: Objetivo
-Desenvolver um app onde as pessoas podem fazer uma gamificação e conseguir prêmios por doações de órgãos ou sangue, fazendo com que seja criado uma cultura onde doar seja comum.
+Desenvolver um app onde as pessoas possam fazer uma gamificação e conseguir prêmios por doações de órgãos ou sangue, com a intenção de criar uma cultura onde doar seja comum.
 
 ## :rocket: Features
 
 - [x] Login de usuário
 - [x] Cadastro de usuário
-- [ ] Perfil de usuário
+- [x] Perfil de usuário
 - [ ] Posts de usuários
 
 ## :rocket: Pré-requisitos

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { http } from '../../utils';
 import { Button, Text, TextInput, View } from 'react-native';
 import styles from './Login.styles';
 
@@ -8,8 +8,11 @@ const Login = ({ navigation }) => {
   const [password, setPass] = useState('');
 
   const login = () => {
-    axios
-      .post('localhost:8080/api/auth', { email, password })
+    http
+      .post('/auth', {
+        email,
+        password,
+      })
       .then(() => {
         console.log('Success');
       })

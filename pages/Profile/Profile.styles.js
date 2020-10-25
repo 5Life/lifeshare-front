@@ -58,4 +58,48 @@ export default StyleSheet.create({
     width: 45,
     height: 45,
   },
+  donationIcon: {
+    width: 40,
+    height: 40,
+    marginRight: 20,
+    borderRadius: '50%',
+    borderWidth: 1,
+    borderColor: '#E84C0E',
+  },
+  flatList: {
+    width: '100%',
+  },
+  listItem: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingRight: 20,
+    paddingLeft: 20,
+    paddingTop: 10,
+  },
+  donationInfo: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  itemType: {
+    transform: [{ translateX: '10px' }],
+  },
+  listItemLabel: {
+    fontSize: 12,
+  },
+  itemDate: {
+    fontSize: 12,
+    textAlign: 'right',
+  },
+  itemLocation: {
+    fontSize: 12,
+  },
+  divider: {
+    width: '100%',
+    marginTop: 10,
+  },
 });

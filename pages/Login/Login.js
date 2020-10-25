@@ -15,10 +15,10 @@ const Login = ({ navigation }) => {
     try {
       const data = await loginApi.authenticateUser({ email, password });
       // Salvar token, etc
-      console.log(data);
     } catch (error) {
-      console.log(error);
-      navigation.navigate('Modal');
+      navigation.navigate('Modal', {
+        errorMessage: 'Usuário ou Senha incorretos.',
+      });
     }
   };
 

@@ -19,14 +19,11 @@ const Register = ({ navigation }) => {
         password,
         confirmPassword,
       });
-      navigation.navigate('Meu Perfil');
-      // Do something with data
-      console.log(data);
+      navigation.navigate('Dados Pessoais', { userData: data });
     } catch (error) {
-      console.log(error);
-
-      // TODO: remove this after server is up and running
-      navigation.navigate('Meu Perfil');
+      navigation.navigate('Modal', {
+        errorMessage: 'Erro ao cadastrar.',
+      });
     }
   };
 

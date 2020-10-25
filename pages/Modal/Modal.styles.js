@@ -6,7 +6,6 @@ export default StyleSheet.create({
     padding: 30,
     backgroundColor: 'transparent',
     justifyContent: 'space-around',
-    textAlign: 'center',
   },
   text: {
     fontSize: 30,

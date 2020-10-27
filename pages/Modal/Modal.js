@@ -1,25 +1,24 @@
-import React from 'react'
-import { Text, View, StyleSheet, Button } from 'react-native'
+import React from 'react';
+import { Text, View, Button } from 'react-native';
+import styles from './Modal.styles';
 
-export default function Modal({navigation}) {
+const Modal = ({ navigation, route }) => {
+  const message =
+    (route && route.params && route.params.errorMessage) ||
+    'Mensagem genérica de erro';
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Usuario ou Senha incorreto.</Text>
-      <Button style={styles.close} color="#E84C0E" title={"Fechar"} onPress={() => navigation.goBack() }/>
+      <View style={styles.info}>
+        <Text style={styles.text}>{message}</Text>
+        <Button
+          color="#E84C0E"
+          title="Tentar novamente"
+          onPress={() => navigation.goBack()}
+        />
+      </View>
     </View>
-  )
-}
+  );
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 30,
-    backgroundColor: "transparent",
-    justifyContent: 'space-around',
-    textAlign: "center"
-  },
-  text: {
-    fontSize: 30,
-    color: "#E84C0E"
-  }
-})
+export default Modal;

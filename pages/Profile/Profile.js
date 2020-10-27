@@ -1,79 +1,107 @@
-import React from 'react'
-import { Text, View, StyleSheet, Image } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import React, { useEffect, useState } from 'react';
+import { FlatList, Image, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Divider } from 'react-native-paper';
 
-export default function Profile({ navigation }) {
-  return(
-    <View style={[styles.main,styles.container]}>
-      <View style={[styles.main,styles.container, styles.profile]}>
-        <View style={styles.main}>
-          <Image 
-            source={require('../../assets/Ellipse2.png')}
-            style={{minHeight: 150, minWidth: 150, margin: 10
-            }}/>
-          <View style={[styles.main, styles.row]}>
-            <Text style={styles.data}>Andrezinho</Text>
-            <Text style={styles.data}> O+</Text>
-            <Image source={require('../../assets/Ellipse8.png')}
-            style={{width:30, height:30, marginLeft:10
-            }}/>
+import buttonAdd from '../../assets/buttonAdd.png';
+import defaultProfilePic from '../../assets/defaultProfilePic.png';
+import editIcon from '../../assets/editIcon.png';
+import noDonationsIcon from '../../assets/noDonationsIcon.png';
+import bloodDonation from '../../assets/bloodDonation.png';
+import organDonation from '../../assets/organDonation.png';
+import styles from './Profile.styles';
+import profileApi from './api/profile';
+
+const ListItem = ({ item, onPress }) => {
+  const { type, location, date, organ } = item;
+  const typeLabel = type === 'blood' ? 'Sangue' : organ;
+
+  return (
+    <TouchableOpacity onPress={() => onPress(item)}>
+      <View style={styles.listItem}>
+        <Image
+          source={type === 'blood' ? bloodDonation : organDonation}
+          style={styles.donationIcon}
+        />
+        <View style={styles.donationInfo}>
+          <View>
+            <Text style={styles.listItemLabel}>Doação</Text>
+            <Text style={styles.itemType}>{typeLabel}</Text>
+          </View>
+          <View>
+            <Text style={styles.itemLocation}>{location}</Text>
+            <Text style={styles.itemDate}>{date}</Text>
           </View>
         </View>
-        <View style={styles.basicData}>
-            <Text style={styles.data}>Órgãos</Text>
-            <Text style={styles.data}>Sangue</Text>
+      </View>
+      <Divider style={styles.divider} />
+    </TouchableOpacity>
+  );
+};
+
+const Profile = ({ navigation }) => {
+  const [donations, setDonations] = useState([]);
+
+  const handleAddDonation = () => {
+    navigation.navigate('Adicionar Doação');
+  };
+
+  const handleItemPress = (item) => {
+    navigation.navigate('Editar Doação', { donationItem: item });
+  };
+
+  useEffect(() => {
+    const fetchDonations = async () => {
+      try {
+        const data = await profileApi.getDonations();
+        setDonations(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchDonations();
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.profile}>
+        <View style={styles.flexCenter}>
+          <Image source={defaultProfilePic} style={styles.defaultProfilePic} />
+          <View style={[styles.flexCenter, styles.userInfo]}>
+            <Text style={styles.basicDataText}>Andrezinho O+</Text>
+            <Image source={editIcon} style={styles.editIcon} />
+          </View>
+        </View>
+        <View style={styles.donationOptions}>
+          <Text style={styles.basicDataText}>Órgãos</Text>
+          <Text style={styles.basicDataText}>Sangue</Text>
         </View>
       </View>
-      <View style={[styles.main,styles.container]}>
-        <Text style={styles.empty}>Você ainda não tem doações cadastradas</Text>  
-        <Image source={require('../../assets/semDoacoes.png')}
-            style={{minHeight:80, minWidth:80, marginTop:10}}/>
+      <View style={[styles.container, styles.flexCenter]}>
+        {!donations.length ? (
+          <>
+            <Text style={styles.empty}>
+              Você ainda não tem doações cadastradas
+            </Text>
+            <Image source={noDonationsIcon} style={styles.noDonationsIcon} />
+          </>
+        ) : (
+          <FlatList
+            data={donations}
+            renderItem={({ item }) => (
+              <ListItem item={item} onPress={handleItemPress} />
+            )}
+            style={styles.flatList}
+          />
+        )}
         <View style={styles.button}>
-          <TouchableOpacity>
-            <Image 
-              style={{width:45, height:45}} 
-              source={require('../../assets/buttonAdd.png')}/>
+          <TouchableOpacity onPress={handleAddDonation}>
+            <Image style={styles.buttonAdd} source={buttonAdd} />
           </TouchableOpacity>
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    width:"100%",
-    backgroundColor: "#FFF"
-  },
-  main: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  profile: {
-    backgroundColor: "#E84C0E",
-  },
-  data: {
-    fontSize: 25,
-    color: "white"
-  },
-  empty: {
-    fontSize: 18,
-  },
-  row: {
-    flexDirection: "row"
-  },
-  basicData:{
-    display:"flex", 
-    flexDirection:"row", 
-    justifyContent:"space-around", 
-    width:"100%",
-    marginTop:20
-  },
-  button: {
-    position: "absolute", 
-    bottom:20, 
-    right:10
-  }
-})
+export default Profile;

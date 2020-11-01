@@ -1,7 +1,7 @@
 import { http } from '../../../utils';
 
 const authenticateUser = async ({ email, password }) => {
-  const response = await http.post('/auth', {
+  const response = await http.post('/api/auth', {
     email,
     password,
   });

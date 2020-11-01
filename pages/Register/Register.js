@@ -16,9 +16,9 @@ const Register = ({ navigation }) => {
         name,
         email,
         bloodType,
-        password,
-        confirmPassword,
+        password
       });
+
       navigation.navigate('Dados Pessoais', { userData: data });
     } catch (error) {
       navigation.navigate('Modal', {

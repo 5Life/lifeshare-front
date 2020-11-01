@@ -1,7 +1,7 @@
 import { http } from '../../../utils';
 
 const addDonation = async ({ type, location, date, organ }) => {
-  const response = await http.post('/donation', {
+  const response = await http.post('/api/user/donation', {
     type,
     location,
     date,
@@ -11,7 +11,7 @@ const addDonation = async ({ type, location, date, organ }) => {
 };
 
 const editDonation = async ({ type, location, date, organ }) => {
-  const response = await http.put('/donation', {
+  const response = await http.put('/api/user/donation', {
     type,
     location,
     date,
@@ -21,7 +21,7 @@ const editDonation = async ({ type, location, date, organ }) => {
 };
 
 const deleteDonation = async ({ type, location, date, organ }) => {
-  const response = await http.delete('/donation', {
+  const response = await http.delete('/api/user/donation', {
     type,
     location,
     date,

@@ -4,6 +4,7 @@
 Lifeshare Mobile App com React Native
 
 ![Badge](https://img.shields.io/badge/framework-React%20%20native-%2306a0c8) ![Badge](https://img.shields.io/badge/package%20manager-Yarn-%233394bf) ![Badge](https://img.shields.io/badge/plataform-Expo-%23506feb)
+
 </div>
 
 <p align="center">
@@ -24,6 +25,7 @@ Lifeshare Mobile App com React Native
 </p>
 
 ## :rocket: Objetivo
+
 Desenvolver um app onde as pessoas possam fazer uma gamificação e conseguir prêmios por doações de órgãos ou sangue, com a intenção de criar uma cultura onde doar seja comum.
 
 ## :rocket: Features
@@ -31,12 +33,13 @@ Desenvolver um app onde as pessoas possam fazer uma gamificação e conseguir pr
 - [x] Login de usuário
 - [x] Cadastro de usuário
 - [x] Perfil de usuário
+- [x] Doações de usuário
 - [ ] Posts de usuários
 
 ## :rocket: Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Expo](https://expo.io/), [Yarn](https://yarnpkg.com/), [Nodejs](https://nodejs.org/en/). 
+[Git](https://git-scm.com), [Expo](https://expo.io/), [Yarn](https://yarnpkg.com/), [Nodejs](https://nodejs.org/en/).
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
 ## :rocket: Rodar
@@ -65,6 +68,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Git](https://git-scm.com)
 
 ## :rocket: Autor
+
 - [Patricia Clares](https://github.com/orgs/5Life/people/PatriciaClares)
 - [Jenifer Spinoza](https://github.com/orgs/5Life/people/Jenyspa)
 - [Gabriel Vacari](https://github.com/orgs/5Life/people/VacariGabriel)

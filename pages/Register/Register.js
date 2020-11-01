@@ -6,20 +6,27 @@ import userApi from './api/user';
 const Register = ({ navigation }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [bloodType, setBloodType] = useState('');
+  const [bloodGroup, setBloodGroup] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleRegister = async () => {
+    if (password !== confirmPassword) {
+      navigation.navigate('Modal', {
+        errorMessage: 'As senhas não conferem.',
+      });
+      return;
+    }
+
     try {
-      const data = await userApi.registerUser({
+      const { data } = await userApi.registerUser({
         name,
         email,
-        bloodType,
-        password
+        bloodGroup,
+        // TODO: criptografar antes de enviar para o backend
+        password,
       });
-
-      navigation.navigate('Dados Pessoais', { userData: data });
+      navigation.navigate('Meu Perfil', { user: data });
     } catch (error) {
       navigation.navigate('Modal', {
         errorMessage: 'Erro ao cadastrar.',
@@ -36,11 +43,19 @@ const Register = ({ navigation }) => {
         <Text style={styles.textLabel}>E-mail *</Text>
         <TextInput style={styles.input} onChangeText={setEmail} />
         <Text style={styles.textLabel}>Tipo Sanguíneo</Text>
-        <TextInput style={styles.input} onChangeText={setBloodType} />
+        <TextInput style={styles.input} onChangeText={setBloodGroup} />
         <Text style={styles.textLabel}>Senha *</Text>
-        <TextInput style={styles.input} onChangeText={setPassword} />
+        <TextInput
+          secureTextEntry
+          style={styles.input}
+          onChangeText={setPassword}
+        />
         <Text style={styles.textLabel}>Repita a Senha *</Text>
-        <TextInput style={styles.input} onChangeText={setConfirmPassword} />
+        <TextInput
+          secureTextEntry
+          style={styles.input}
+          onChangeText={setConfirmPassword}
+        />
       </View>
       <View>
         <Button title="CADASTRAR" color="#E84C0E" onPress={handleRegister} />

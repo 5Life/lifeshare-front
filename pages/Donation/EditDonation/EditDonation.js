@@ -8,6 +8,7 @@ const EditDonation = ({ navigation, route }) => {
   const {
     params: {
       donationItem: {
+        key,
         type: originalType,
         location: originalLocation,
         date: originalDate,
@@ -24,12 +25,13 @@ const EditDonation = ({ navigation, route }) => {
   const handleEditDonation = async () => {
     try {
       await donationApi.editDonation({
-        type: checked,
-        location,
         date,
+        key,
+        location,
+        type: checked,
         organ: checked === 'blood' ? '' : organ,
       });
-      navigation.navigate('Dados Pessoais');
+      navigation.navigate('Meu Perfil');
     } catch (error) {
       navigation.navigate('Modal', { errorMessage: 'Erro ao salvar.' });
     }
@@ -38,12 +40,13 @@ const EditDonation = ({ navigation, route }) => {
   const handleDeleteDonation = async () => {
     try {
       await donationApi.deleteDonation({
-        type: originalType,
-        location: originalLocation,
+        key,
         date: originalDate,
+        location: originalLocation,
         organ: originalOrgan,
+        type: originalType,
       });
-      navigation.navigate('Dados Pessoais');
+      navigation.navigate('Meu Perfil');
     } catch (error) {
       navigation.navigate('Modal', {
         errorMessage: 'Erro ao deletar.',

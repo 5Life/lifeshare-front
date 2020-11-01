@@ -13,8 +13,8 @@ const Login = ({ navigation }) => {
     }
 
     try {
-      const data = await loginApi.authenticateUser({ email, password });
-      // Salvar token, etc
+      const { data } = await loginApi.authenticateUser({ email, password });
+      navigation.navigate('Meu Perfil', { user: data });
     } catch (error) {
       navigation.navigate('Modal', {
         errorMessage: 'Usuário ou Senha incorretos.',

@@ -3,16 +3,14 @@ import { http } from '../../../utils';
 const registerUser = async ({
   name,
   email,
-  bloodType,
-  password,
-  confirmPassword,
+  bloodGroup,
+  password
 }) => {
-  const data = await http.post('/user', {
+  const data = await http.post('/api/user', {
     name,
     email,
-    bloodType,
-    password,
-    confirmPassword,
+    bloodGroup,
+    password
   });
 
   return data;

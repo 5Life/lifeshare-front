@@ -6,19 +6,25 @@ import userApi from './api/user';
 const Register = ({ navigation }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [bloodType, setBloodType] = useState('');
+  const [bloodGroup, setBloodGroup] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleRegister = async () => {
+    if (password !== confirmPassword) {
+      navigation.navigate('Modal', {
+        errorMessage: 'As senhas não conferem.',
+      });
+      return;
+    }
+
     try {
-      const data = await userApi.registerUser({
+      const { data } = await userApi.registerUser({
         name,
         email,
-        bloodType,
+        bloodGroup,
         // TODO: criptografar antes de enviar para o backend
         password,
-        confirmPassword,
       });
       navigation.navigate('Meu Perfil', { user: data });
     } catch (error) {
@@ -37,7 +43,7 @@ const Register = ({ navigation }) => {
         <Text style={styles.textLabel}>E-mail *</Text>
         <TextInput style={styles.input} onChangeText={setEmail} />
         <Text style={styles.textLabel}>Tipo Sanguíneo</Text>
-        <TextInput style={styles.input} onChangeText={setBloodType} />
+        <TextInput style={styles.input} onChangeText={setBloodGroup} />
         <Text style={styles.textLabel}>Senha *</Text>
         <TextInput
           secureTextEntry

@@ -16,10 +16,11 @@ const Register = ({ navigation }) => {
         name,
         email,
         bloodType,
+        // TODO: criptografar antes de enviar para o backend
         password,
         confirmPassword,
       });
-      navigation.navigate('Dados Pessoais', { userData: data });
+      navigation.navigate('Meu Perfil', { user: data });
     } catch (error) {
       navigation.navigate('Modal', {
         errorMessage: 'Erro ao cadastrar.',
@@ -38,9 +39,17 @@ const Register = ({ navigation }) => {
         <Text style={styles.textLabel}>Tipo Sanguíneo</Text>
         <TextInput style={styles.input} onChangeText={setBloodType} />
         <Text style={styles.textLabel}>Senha *</Text>
-        <TextInput style={styles.input} onChangeText={setPassword} />
+        <TextInput
+          secureTextEntry
+          style={styles.input}
+          onChangeText={setPassword}
+        />
         <Text style={styles.textLabel}>Repita a Senha *</Text>
-        <TextInput style={styles.input} onChangeText={setConfirmPassword} />
+        <TextInput
+          secureTextEntry
+          style={styles.input}
+          onChangeText={setConfirmPassword}
+        />
       </View>
       <View>
         <Button title="CADASTRAR" color="#E84C0E" onPress={handleRegister} />

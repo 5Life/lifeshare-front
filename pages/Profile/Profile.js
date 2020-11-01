@@ -39,7 +39,10 @@ const ListItem = ({ item, onPress }) => {
   );
 };
 
-const Profile = ({ navigation }) => {
+const Profile = ({ navigation, route }) => {
+  // TODO: Extrair dados do user a partir do objeto route
+  // const { ... } = route.user
+
   const [donations, setDonations] = useState([]);
 
   const handleAddDonation = () => {

@@ -13,7 +13,7 @@ const Login = ({ navigation }) => {
     }
 
     try {
-      const data = await loginApi.authenticateUser({ email, password });
+      const { data } = await loginApi.authenticateUser({ email, password });
       navigation.navigate('Meu Perfil', { user: data });
     } catch (error) {
       navigation.navigate('Modal', {

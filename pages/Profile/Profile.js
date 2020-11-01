@@ -40,9 +40,7 @@ const ListItem = ({ item, onPress }) => {
 };
 
 const Profile = ({ navigation, route }) => {
-  // TODO: Extrair dados do user a partir do objeto route
-  // const { ... } = route.user
-
+  const { name, bloodGroup } = route.user;
   const [donations, setDonations] = useState([]);
 
   const handleAddDonation = () => {
@@ -56,7 +54,7 @@ const Profile = ({ navigation, route }) => {
   useEffect(() => {
     const fetchDonations = async () => {
       try {
-        const data = await profileApi.getDonations();
+        const { data } = await profileApi.getDonations();
         setDonations(data);
       } catch (error) {
         console.log(error);
@@ -71,7 +69,9 @@ const Profile = ({ navigation, route }) => {
         <View style={styles.flexCenter}>
           <Image source={defaultProfilePic} style={styles.defaultProfilePic} />
           <View style={[styles.flexCenter, styles.userInfo]}>
-            <Text style={styles.basicDataText}>Andrezinho O+</Text>
+            <Text style={styles.basicDataText}>
+              {name} {bloodGroup}
+            </Text>
             <Image source={editIcon} style={styles.editIcon} />
           </View>
         </View>
